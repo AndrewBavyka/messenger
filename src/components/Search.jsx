@@ -31,7 +31,7 @@ function Search() {
   };
 
   const handleSelect = async () => {
-    //check whether the group(chats in firestore) exists, if not create
+   //проверяем существует ли группа(чаты в firestore), если нет - создаем
     const combinedId =
       currentUser.uid > user.uid
         ? currentUser.uid + user.uid
@@ -40,10 +40,10 @@ function Search() {
       const res = await getDoc(doc(db, "chats", combinedId));
 
       if (!res.exists()) {
-        //create a chat in chats collection
+       //создаем чат в коллекции чатов
         await setDoc(doc(db, "chats", combinedId), { messages: [] });
 
-        //create user chats
+        // создание пользовательских чатов
         await updateDoc(doc(db, "userChats", currentUser.uid), {
           [combinedId + ".userInfo"]: {
             uid: user.uid,
@@ -65,7 +65,7 @@ function Search() {
     } catch (err) {}
 
     setUser(null);
-    setUsername("")
+    setUsername("");
   };
 
   return (

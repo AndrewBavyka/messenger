@@ -74,7 +74,7 @@ export default function Register() {
             Регистрация
           </button>
           {loading && "Загрузка изображения пожалуйста подождите..."}
-          {err && <span>Something went wrong</span>}
+          {err && <span>Что-то пошло не так</span>}
         </form>
         <p>
           Уже есть аккаунт? <Link to="/login">Войти?</Link>

@@ -130,11 +130,12 @@
         border-right: 1px solid var(--dark-purple);
         background-color: var(--dark-purple);
         max-width: 25%;
+
         .navbar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: #2f2d52;
+            background-color: #0088cc;
             color: #ddddf7;
             height: 50px;
             padding: 10px;
@@ -161,8 +162,8 @@
                 }
 
                 button {
-                    border: none;
-                    background-color: var(--dark-purple);
+                    border: 1px solid var(--white);
+                    background-color: #0088cc;
                     color: #ddddf7;
                     padding: 5px;
                     border-radius: 15px;
@@ -170,7 +171,7 @@
                     transition-duration: .3s;
 
                     &:hover {
-                        background-color: var(--purple);
+                        background-color: #1c76a2;
                     }
 
                     @include tablet {
@@ -184,10 +185,9 @@
         }
 
         .search {
-            border-bottom: 1px solid gray;
 
             .search-form {
-                padding: 10px;
+                padding: 15px 10px 15px 10px;
 
                 input {
                     width: 100%;
@@ -231,7 +231,8 @@
 
             &__info {
                 max-width: 75%;
-                span {  
+
+                span {
                     font-size: 18px;
                     font-weight: 500;
                 }
@@ -252,12 +253,12 @@
 
         .chat-info {
             height: 50px;
-            background-color: #5d5d8d;
+            background-color: #0088cc;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 10px;
-            color: lightgray;
+            color: var(--white);
         }
 
         .chat-icons {
@@ -271,7 +272,7 @@
         }
 
         .messages {
-            background-color: #ddddf7;
+            background-color: #dfdfdf;
             padding: 10px;
             height: calc(100% - 160px);
             overflow-y: scroll;
@@ -302,10 +303,14 @@
                     gap: 10px;
 
                     p {
+                        max-width: 350px;
+                        overflow-wrap: break-word;
+                        color: var(--white);
                         max-width: max-content;
-                        background-color: var(--white);
+                        background-color: #0088cc;
                         padding: 10px 20px;
                         border-radius: 0 10px 10px 10px;
+
                     }
 
                     img {
@@ -320,7 +325,9 @@
                         align-items: flex-end;
 
                         p {
-                            background-color: #8da4f1;
+                            max-width: 350px;
+                            overflow-wrap: break-word;
+                            background-color: #0e6089;
                             color: var(--white);
                             border-radius: 10px 0 10px 10px;
                         }
@@ -365,12 +372,12 @@
                     border: none;
                     padding: 10px 15px;
                     color: var(--white);
-                    background-color: #8da4f1;
+                    background-color: #0088cc;
                     transition: .3s;
                     border-radius: 10px;
 
                     &:hover {
-                        background-color: #2f2d52;
+                        background-color: #1c76a2;
                     }
                 }
             }

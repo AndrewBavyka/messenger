@@ -14,7 +14,7 @@ function Login() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/")
+      navigate("/");
     } catch (err) {
       setErr(true);
     }
@@ -29,7 +29,7 @@ function Login() {
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Пароль" />
           <button type="submit">Вход</button>
-          {err && <span>Попробуйте в другой раз</span>}
+          {err && <span>Что-то пошло не так</span>}
         </form>
         <p>
           У вас нет аккаунта? <Link to="/register">Зарегистрироваться?</Link>

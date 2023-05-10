@@ -19,7 +19,6 @@ function Message({ message }) {
     >
       <div className="message-info">
         <img
-        
           src={
             message.senderId === currentUser.uid
               ? currentUser.photoURL
