@@ -88,8 +88,8 @@ export default function Register() {
           <button disabled={loading} type="submit">
             Регистрация
           </button>
-          {loading && "Загрузка изображения пожалуйста подождите..."}
-          {err && <span>Что-то пошло не так</span>}
+          {loading && <span className="reg-info">Загрузка изображения пожалуйста подождите...</span>}
+          {err && <span className="reg-info">Что-то пошло не так</span>}
         </form>
         <p>
           Уже есть аккаунт? <Link to="/login">Войти?</Link>

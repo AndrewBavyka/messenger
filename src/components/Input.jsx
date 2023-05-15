@@ -10,12 +10,10 @@ import {
 } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
-
 import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
 
 import Img from "../img/img.png";
-
 
 function Input() {
   const [text, setText] = useState("");

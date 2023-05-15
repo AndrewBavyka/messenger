@@ -8,7 +8,7 @@ function Navbar() {
 
   return (
     <div className="navbar">
-      <span className="logo">Andrew Chat</span>
+      <span className="logo">AC</span>
       <div className="user">
         <img src={currentUser.photoURL} alt="user-img" />
         <span>{currentUser.displayName}</span>
