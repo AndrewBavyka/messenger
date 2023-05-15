@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Add from "../img/addAvatar.png";
+
 import { auth, db, storage } from "../firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -15,6 +16,14 @@ export default function Register() {
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
+
+    const form = e.target;
+
+    if (!form.checkValidity()) {
+      setErr(true);
+      setLoading(false);
+      return;
+    }
 
     const displayName = e.target[0].value;
     const email = e.target[1].value;
@@ -62,10 +71,16 @@ export default function Register() {
         <span className="logo">Andrew Chat</span>
         <span className="title">Регистрация</span>
         <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Ваше имя" />
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Пароль" />
-          <input className="input-file" type="file" id="file" />
+          <input required type="text" placeholder="Ваше имя" />
+          <input required type="email" placeholder="Email" />
+          <input required type="password" placeholder="Пароль" />
+          <input
+            required
+            className="input-file"
+            type="file"
+            id="file"
+            name="file"
+          />
           <label htmlFor="file">
             <img src={Add} alt="add-img" />
             <span>Добавить аватар</span>

@@ -1,6 +1,4 @@
 :root {
-    --purple: #a7bcff;
-    --dark-purple: #5d5d8d;
     --white: #fff;
 }
 
@@ -46,7 +44,7 @@
         }
 
         .title {
-            color: var(--dark-purple);
+            color: black;
             font-size: 14px;
         }
 
@@ -191,6 +189,7 @@
 
         .search {
             margin-top: 10px;
+            text-align: center;
 
             .search-form {
                 padding: 15px 10px 15px 10px;
@@ -212,6 +211,11 @@
                         color: lightgray;
                     }
                 }
+            }
+
+            .err-search {
+                color: white;
+                font-size: 12px;
             }
         }
 

@@ -10,11 +10,12 @@ import {
 } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
+
 import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
 
 import Img from "../img/img.png";
-import Attach from "../img/attach.png";
+
 
 function Input() {
   const [text, setText] = useState("");
@@ -24,7 +25,7 @@ function Input() {
   const { data } = useContext(ChatContext);
 
   const handleSend = async (event) => {
-    if (event.key === "Enter" || !event.key) {
+    if ((event.key === "Enter" || !event.key) && text.trim() !== "") {
       if (img) {
         const storageRef = ref(storage, uuid());
 
@@ -86,7 +87,6 @@ function Input() {
         value={text}
       />
       <div className="send">
-        <img src={Attach} alt="" />
         <input
           type="file"
           style={{ display: "none" }}

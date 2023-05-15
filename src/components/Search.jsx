@@ -1,5 +1,15 @@
 import React, { useContext, useState } from "react";
-import {collection, getDoc, getDocs, query, where, setDoc, doc, updateDoc, serverTimestamp, } from "firebase/firestore";
+import {
+  collection,
+  getDoc,
+  getDocs,
+  query,
+  where,
+  setDoc,
+  doc,
+  updateDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { db } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
 
@@ -11,16 +21,22 @@ function Search() {
   const { currentUser } = useContext(AuthContext);
 
   const handleSearch = async () => {
-    const q = query(
+    const userQuery = query(
       collection(db, "users"),
       where("displayName", "==", username)
     );
 
     try {
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        setUser(doc.data());
-      });
+      const querySnapshot = await getDocs(userQuery);
+      if (querySnapshot.empty) {
+        setUser(null);
+        setErr(true); // устанавливаем значение err в true
+      } else {
+        querySnapshot.forEach((doc) => {
+          setUser(doc.data());
+          setErr(false); // если пользователь найден, устанавливаем значение err в false
+        });
+      }
     } catch (err) {
       setErr(true);
     }
@@ -31,7 +47,7 @@ function Search() {
   };
 
   const handleSelect = async () => {
-   //проверяем существует ли группа(чаты в firestore), если нет - создаем
+    //проверяем существует ли группа(чаты в firestore), если нет - создаем
     const combinedId =
       currentUser.uid > user.uid
         ? currentUser.uid + user.uid
@@ -40,10 +56,8 @@ function Search() {
       const res = await getDoc(doc(db, "chats", combinedId));
 
       if (!res.exists()) {
-       //создаем чат в коллекции чатов
         await setDoc(doc(db, "chats", combinedId), { messages: [] });
 
-        // создание пользовательских чатов
         await updateDoc(doc(db, "userChats", currentUser.uid), {
           [combinedId + ".userInfo"]: {
             uid: user.uid,
@@ -62,7 +76,11 @@ function Search() {
           [combinedId + ".date"]: serverTimestamp(),
         });
       }
-    } catch (err) {}
+    } catch (error) {
+      console.log(error);
+      alert("Произошла ошибка. Попробуйте еще раз позже.");
+      return;
+    }
 
     setUser(null);
     setUsername("");
@@ -79,7 +97,7 @@ function Search() {
           value={username}
         />
       </div>
-      {err && <span>Пользователь не найден</span>}
+      {err && <span className="err-search">Пользователь не найден!</span>}
 
       {user && (
         <div className="user-chat" onClick={handleSelect}>
